@@ -11,3 +11,7 @@ It is a help to use of flightgear using the keyboard.
 For more Information on flightgear see
 
 https://www.flightgear.org/
+
+# remark
+
+the keyboard.xml file have same license a fligthgear license
