@@ -36,6 +36,52 @@
             float: right;
             background-color: lightblue;
         }
+
+        #keyboard {
+            display: flex;
+            flex-direction: row;
+        }
+
+        div.roundKeyboard {
+            border: 2px solid black;
+            border-radius: 12px;
+            padding: 3px;
+        }
+
+        div.roundKeyboardRow {
+            display: flex;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 2px;
+        }
+
+        div.roundKeyboardKey {
+            margin: 1px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 1px;
+            width: 90px;
+        }
+
+        div.keyName {
+            margin: 1px;
+            font-size: 22px;
+            text-align: left;
+        }
+
+        div.keyNameUnused {
+            margin: 1px;
+            font-size: 20px;
+            text-align: left;
+            color: grey;
+        }
+
+        div.keyHelp {
+            margin: 1px;
+            font-size: 14px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
     </style>
     <!-- <script src="scripts/main.js"></script> -->
     <script>
@@ -47,7 +93,7 @@
         // https://standardjs.com/rules.html
         console.log('inline script is run')
     </script>
-    <title>HTML5 Template Page</title>
+    <title>FlightGear 2020.3 Keyboard</title>
 </head>
 
 <body>
@@ -66,122 +112,512 @@
 
     <header>
         <!-- header of document -->
-        Header of document text.
+        swiss german keyboard layout.
         <hr>
     </header>
 
-    <nav>
-        <!-- Navigation often links -->
-        Navigation |
-        <a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a>
-        <!--  CSS, HTML, JavaScript, and Web APIs. --> |
-        <a href="https://www.w3schools.com/" target="_blank">w3schools Learn to Code</a>
-        <hr>
-    </nav>
-
-    <main>
+    <main id="mainOfDocument">
         <!-- main specifies the main content of this document -->
         <!-- only ONE main element in the document. -->
-
         <section>
             <header>
                 <!-- header of section -->
-                Header text of 'section with articles'.
-                <hr>
+                <!-- Header text of 'section with details / summary pairs'. -->
+                <!-- <hr> -->
             </header>
-            <!--Added hgroup to this group of text. Phillip Andrews-->
-            <hgroup>
-                <h2>Section with articles</h2>
-                <p>This tag is used to split a page into sections like Introduction, Contact Information, Details, etc.</p>
-                <p>Section defines the type of content.</p>
-                <p>A section can have nested sections.</p>
-            </hgroup>
-            <article>
-
-                <header>
-                    <!-- header of article -->
-                    Header text of 'article in section'.
-                    <hr>
-                </header>
-
-                <aside>
-                    <header>
-                        <!-- header of aside -->
-                        Header text of aside.
-                        <hr>
-                    </header>
-                    <h2>Aside</h2>
-                    Aside text.
-                    <footer>
-                        <!-- footer of aside -->
-                        <hr>
-                        Footer text of aside.
-                    </footer>
-                </aside>
-                <!--Added hgroup to this group of text. Phillip Andrews-->
-                <hgroup>
-                    <h2>The article</h2>
-                    <p>The article contains independent content that does not require any other context.</p>
-                    <p>Articles will contain the specific contents in that type of section.</p>
-                    <p>But placing article inside of section is good practice.</p>
-                </hgroup>
-                <footer>
-                    <!-- footer of article -->
-                    <hr>
-                    Footer text of 'acticle in section'.
-                </footer>
-            </article>
+            <h2>FlightGear 2020.3 Keyboard</h2>
+            <p id="keyboard"></p>
             <footer>
                 <!-- footer of section -->
                 <hr>
-                Footer text of 'section with articles'.
+                created from keyboard.xml from FlightGear 2020.3
             </footer>
         </section>
 
-        <hr>
+        <script>
+                // in main of document read keyboard json and render keyboard
+                console.log('after main, inline script is run')
 
-        <section>
-            <header>
-                <!-- header of section -->
-                Header text of 'section with details / summary pairs'.
-                <hr>
-            </header>
-            <h2>Section with details / summary pairs</h2>
-            <p>Details can be opend and closed.</p>
-            <p>Details can have nested details.</p>
-            <details open>
-                <summary>Summary of parent Detail</summary>
-                Parent detail text.
-                <details open>
-                    <summary>Summary of child Detail</summary>
-                    Child detail text.
-                </details>
-            </details>
-            <footer>
-                <!-- footer of section -->
-                <hr>
-                Footer text of 'section with details / summary pairs'.
-            </footer>
-        </section>
+                function readKeyBoardLayout() {
+                    // swiss german keyboard without numericpad
+                    // with some descrptions from
+                    // https://flightgear.sourceforge.net/manual/2020.3/en/getstart-ench5.html#keyboard-controls
+                    const keyboardLayoutJSON =
+                        '{ \
+                  "rows": [ \
+                    { \
+                      "ESC":"", \
+                      "F1":"", \
+                      "F2":"", \
+                      "F3":"", \
+                      "F4":"", \
+                      "F5":"", \
+                      "F6":"", \
+                      "F7":"", \
+                      "F8":"", \
+                      "F9":"", \
+                      "F10":"", \
+                      "F11":"", \
+                      "F12":"" \
+                    }, \
+                    { \
+                      "Tab":"", \
+                      "Q":"", \
+                      "W":"", \
+                      "E":"", \
+                      "R":"", \
+                      "T":"", \
+                      "Z":"", \
+                      "U":"", \
+                      "I":"", \
+                      "O":"", \
+                      "P":"", \
+                      "[":"", \
+                      "]":"" \
+                    }, \
+                    { \
+                      "CL":"", \
+                      "A":"", \
+                      "S":"", \
+                      "D":"", \
+                      "F":"", \
+                      "G":"", \
+                      "H":"", \
+                      "J":"", \
+                      "K":"", \
+                      "L":"", \
+                      "ö":"", \
+                      "{":"", \
+                      "}":"" \
+                    }, \
+                    { \
+                      ">":"", \
+                      "Y":"", \
+                      "X":"", \
+                      "C":"", \
+                      "V":"", \
+                      "B":"", \
+                      "N":"", \
+                      "M":"", \
+                      ",":"", \
+                      ".":"", \
+                      "-":"", \
+                      "SPACE":"" \
+                    } \
+                  ] \
+                }'
+                    console.log('---')
+                    console.log('readKeyBoardLayout(): keyboardLayoutJSON:')
+                    console.log(keyboardLayoutJSON)
+                    keyBoardLayout = JSON.parse(keyboardLayoutJSON)
+                    console.log('readKeyBoardLayout(): keyBoardLayout:')
+                    console.log(keyBoardLayout)
+                    console.log('---')
+                    return keyBoardLayout
+                }
 
+                function readInsertAndArrowPadLayout() {
+                    // insert and arrow pad
+                    // with some descrptions from
+                    // https://flightgear.sourceforge.net/manual/2020.3/en/getstart-ench5.html#keyboard-controls
+                    const insertAndArrowPadLayoutJSON =
+                        '{ \
+                  "rows": [ \
+                    { \
+                      "Insert":"", \
+                      "Home":"", \
+                      "PageUp":"" \
+                    }, \
+                    { \
+                      "Delete":"", \
+                      "End":"", \
+                      "PageDown":"" \
+                    }, \
+                    { \
+                      "only":"", \
+                      "pl.holder":"", \
+                      "row  ":"" \
+                    }, \
+                    { \
+                      " ":"", \
+                      "Up":"", \
+                      "  ":"" \
+                    }, \
+                    { \
+                      "Left":"", \
+                      "Down":"", \
+                      "Right":"" \
+                    } \
+                  ] \
+                }'
+                    console.log('---')
+                    console.log('readInsertAndArrowPadLayout(): insertAndArrowPadLayoutJSON:')
+                    console.log(insertAndArrowPadLayoutJSON)
+                    insertAndArrowPadLayout = JSON.parse(insertAndArrowPadLayoutJSON)
+                    console.log('readInsertAndArrowPadLayout(): insertAndArrowPadLayout:')
+                    console.log(insertAndArrowPadLayout)
+                    console.log('---')
+                    return insertAndArrowPadLayout
+                }
+
+                function readNumericPadLayout() {
+                    // numeric pad
+                    // with some descrptions from
+                    // https://flightgear.sourceforge.net/manual/2020.3/en/getstart-ench5.html#keyboard-controls
+                    const numericPadLayoutJSON =
+                        '{ \
+                  "rows": [ \
+                    { \
+                      "Num Lock":"", \
+                      "/":"", \
+                      "* ":"", \
+                      "-":"" \
+                    }, \
+                    { \
+                      "7":"", \
+                      "8":"", \
+                      "9":"", \
+                      "+":"" \
+                    }, \
+                    { \
+                      "4":"", \
+                      "5":"", \
+                      "6":"", \
+                      " ":"" \
+                    }, \
+                    { \
+                      "1":"", \
+                      "2":"", \
+                      "3":"", \
+                      "Enter":"" \
+                    }, \
+                    { \
+                      "0":"", \
+                      " ":"", \
+                      ".":"", \
+                      " ":"" \
+                    } \
+                  ] \
+                }'
+                    console.log('---')
+                    console.log('readNumericPadLayout(): numericPadLayoutJSON:')
+                    console.log(numericPadLayoutJSON)
+                    numericPadLayout = JSON.parse(numericPadLayoutJSON)
+                    console.log('readNumericPadLayout(): numericPadLayout:')
+                    console.log(numericPadLayout)
+                    console.log('---')
+                    return numericPadLayout
+                }
+
+                function readSpecialShiftSymbols() {
+                    // there are key on the keyboard with special shilft symbols
+                    const specialShiftSymbolsJSON =
+                        '{ \
+                      ",":";", \
+                      ".":":", \
+                      "-":"_" \
+                    }'
+                    console.log('---')
+                    console.log('readSpecialShiftSymbols(): specialShiftSymbolsJSON:')
+                    console.log(specialShiftSymbolsJSON)
+                    specialShiftSymbols = JSON.parse(specialShiftSymbolsJSON)
+                    console.log('readSpecialShiftSymbols(): specialShiftSymbols:')
+                    console.log(specialShiftSymbols)
+                    console.log('---')
+                    return specialShiftSymbols
+                }
+
+                // key is https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection
+                function handleXMLKey(key, keyListFromXML) {
+                    // console.log('---')
+                    // console.log(key)
+                    // const keyAttributeN = key.getAttribute('n')
+                    // console.log('keyAttribute n: ' + keyAttributeN)
+                    // console.log(key.children)
+                    // console.log('name:')
+                    // console.log(key.getElementsByTagName('name')[0])
+                    const keyName = key.getElementsByTagName('name')[0].textContent
+                    // console.log(keyName)
+                    // console.log('typeof: ' + typeof(keyName))
+                    // console.log('desc:')
+                    // console.log(key.getElementsByTagName('desc')[0])
+                    const keyDesc = key.getElementsByTagName('desc')[0].textContent
+                    // console.log(keyDesc)
+                    // console.log('typeof: ' + typeof(keyDesc))
+                    // console.log('binding:')
+                    // console.log(key.getElementsByTagName('binding')[0])
+                    keyListFromXML.set(keyName, keyDesc)
+                    // console.log('---')
+                }
+
+                function isLetterAndLengthOne(s) {
+                    return s.length === 1 && (s.toLowerCase() != s.toUpperCase())
+                }
+
+                function handleKey(keyName, keyIndex, rowObject, rowNumber, htmlKeyboardRowElement, keyListFromXML, specialShiftSymbols, document) {
+                    console.log('---')
+                    // console.log('handleKey(): parameter keyListFromXML:')
+                    // console.log(keyListFromXML)
+                    // console.log(keyListFromXML.size)
+                    const nbOfkeysInRow = Object.keys(rowObject).length
+                    console.log('handle key ' + (keyIndex + 1) + ' of row ' + rowNumber + ' of total keys ' + nbOfkeysInRow)
+                    console.log('handleKey: keyName:')
+                    console.log(keyName)
+                    // console.log('typeof: ' + typeof (keyName))
+
+                    let keyHelp = ''
+
+                    // remark about keyboard.xml and its modifier
+                    // there are
+                    // shift: 1, ctrl: 2, alt: 4, meta: 8, super: 16, hyper: 32
+                    // eff used are only :
+                    // represented in the name node with text perfix:
+                    // Ctrl-
+                    // Alt-
+                    // with uppercase letters
+                    // there are uppercase letters
+                    // there are lowercase letters
+                    // there are F1 - F12
+                    // there are the 6 block: (current not in the keyboard layout)
+                    // Insert / Home / PageUp
+                    // (Delete) / End / PageDown
+                    // there are the 4 Arrows: Left / Up / Right / Down (current not in the keyboard layout)
+
+                    const isKeyNameLetterAndLengthOne = isLetterAndLengthOne(keyName)
+                    console.log('handleKey: isKeyNameLetterAndLengthOne:')
+                    console.log(isKeyNameLetterAndLengthOne)
+                    if (isKeyNameLetterAndLengthOne) {
+                        const keyNameUppercase = keyName.toUpperCase()
+                        // console.log('handleKey: keyNameUppercase:')
+                        // console.log(keyNameUppercase)
+                        if (keyListFromXML.has(keyNameUppercase)) {
+                            keyHelp = keyNameUppercase + ': ' + keyListFromXML.get(keyNameUppercase)
+                        }
+
+                        const keyNameLowercase = keyName.toLowerCase()
+                        // console.log('handleKey: keyNameLowercase:')
+                        // console.log(keyNameLowercase)
+                        if (keyListFromXML.has(keyNameLowercase)) {
+                            if (keyHelp.length === 0) {
+                                keyHelp = keyNameLowercase + ': ' + keyListFromXML.get(keyNameLowercase)
+
+                            } else {
+                                keyHelp = keyHelp + '\n' + keyNameLowercase + ': ' + keyListFromXML.get(keyNameLowercase)
+                            }
+                        }
+
+                        const keyNameCTRLUppercase = 'Ctrl-' + keyNameUppercase
+                        // console.log('handleKey: keyNameCTRLUppercase:')
+                        // console.log(keyNameCTRLUppercase)
+                        if (keyListFromXML.has(keyNameCTRLUppercase)) {
+                            if (keyHelp.length === 0) {
+                                keyHelp = keyNameCTRLUppercase + ': ' + keyListFromXML.get(keyNameCTRLUppercase)
+                            } else {
+                                keyHelp = keyHelp + '\n' + keyNameCTRLUppercase + ': ' + keyListFromXML.get(keyNameCTRLUppercase)
+
+                            }
+                        }
+
+                        const keyNameALTUppercase = 'Alt-' + keyNameUppercase
+                        // console.log('handleKey: keyNameALTUppercase:')
+                        // console.log(keyNameALTUppercase)
+                        if (keyListFromXML.has(keyNameALTUppercase)) {
+                            if (keyHelp.length === 0) {
+                                keyHelp = keyNameALTUppercase + ': ' + keyListFromXML.get(keyNameALTUppercase)
+                            } else {
+                                keyHelp = keyHelp + '\n' + keyNameALTUppercase + ': ' + keyListFromXML.get(keyNameALTUppercase)
+                            }
+                        }
+                        // keyHelp = rowObject[keyName]
+                    } else {
+                        console.log('handleKey has keyName: keyListFromXML.has(' + keyName + '): ' + keyListFromXML.has(keyName))
+
+                        if (keyListFromXML.has(keyName)) {
+                            if (keyName in specialShiftSymbols) {
+                                const specialShiftSymbol = specialShiftSymbols[keyName]
+                                if (keyListFromXML.has(specialShiftSymbol)) {
+                                    // two symbols, normal and shift
+                                    keyHelp = specialShiftSymbol + ' : ' + keyListFromXML.get(specialShiftSymbol)
+                                    keyHelp = keyHelp + '\n' + keyName + ' : ' + keyListFromXML.get(keyName)
+                                } else {
+                                    // only one symbol
+                                    keyHelp = keyListFromXML.get(keyName)
+                                }
+                            } else {
+                                // only one symbol
+                                keyHelp = keyListFromXML.get(keyName)
+                            }
+                        } else {
+                            keyHelp = rowObject[keyName]
+                        }
+                    }
+
+                    console.log('keyHelp:')
+                    console.log(keyHelp)
+                    const newKeyboardKeyNameElement = document.createElement("div")
+                    if (!keyHelp || keyHelp.length === 0) {
+                        newKeyboardKeyNameElement.setAttribute("class", "keyNameUnused")
+                    } else {
+                        newKeyboardKeyNameElement.setAttribute("class", "keyName")
+                    }
+                    const keyNameTextElement = document.createTextNode(keyName.toString())
+                    newKeyboardKeyNameElement.appendChild(keyNameTextElement)
+
+                    const newKeyboardKeyHelpElement = document.createElement("div")
+                    newKeyboardKeyHelpElement.setAttribute("class", "keyHelp")
+                    const keyHelpTextElement = document.createTextNode(keyHelp)
+                    newKeyboardKeyHelpElement.appendChild(keyHelpTextElement)
+
+                    const newKeyboardKeyElement = document.createElement("div")
+                    newKeyboardKeyElement.setAttribute("class", "roundKeyboardKey")
+                    newKeyboardKeyElement.appendChild(newKeyboardKeyNameElement)
+                    newKeyboardKeyElement.appendChild(newKeyboardKeyHelpElement)
+
+                    htmlKeyboardRowElement.appendChild(newKeyboardKeyElement)
+                    console.log('---')
+                }
+
+                function handleRow(rowObject, index, array) {
+                    console.log('---')
+                    // console.log('handleRow(): this : { keyListFromXML: keyListFromXML, document: document, specialShiftSymbols: specialShiftSymbols, newDivKeyboardElement: newDivKeyboardElement}')
+                    // or
+                    // console.log('handleRow(): this : { keyListFromXML: keyListFromXML, document: document, specialShiftSymbols: specialShiftSymbols, newDivInsertAndArrowPadElement: newDivInsertAndArrowPadElement}')
+                    // or
+                    // console.log('handleRow(): this : { keyListFromXML: keyListFromXML, document: document, specialShiftSymbols: specialShiftSymbols, newDivNumPadElement: newDivNumPadElement}')
+                    // console.log('handleRow(): this.keyListFromXML')
+                    // console.log(this.keyListFromXML)
+                    // console.log('handleRow(): this.document')
+                    // console.log(this.document)
+                    // console.log('handleRow(): this.newDivKeyboardElement')
+                    // console.log(this.newDivKeyboardElement)
+                    // or
+                    // console.log('handleRow(): this.newDivNumPadElement')
+                    // console.log(this.newDivNumPadElement)
+                    const rowNumber = index + 1
+                    const nbOfKeysInRow = Object.keys(rowObject).length
+                    console.log('handle row ' + rowNumber + ', with ' + nbOfKeysInRow + ' keys, of total rows ' + array.length)
+                    console.log('handleRow: row Object:')
+                    console.log(rowObject)
+                    const newKeyboardRowElement = this.document.createElement("div")
+                    newKeyboardRowElement.setAttribute("class", "roundKeyboardRow")
+                    if (this.newDivKeyboardElement) {
+                        this.newDivKeyboardElement.appendChild(newKeyboardRowElement)
+                    }
+                    if (this.newDivInsertAndArrowPadElement) {
+                        this.newDivInsertAndArrowPadElement.appendChild(newKeyboardRowElement)
+                    }
+                    if (this.newDivNumPadElement) {
+                        this.newDivNumPadElement.appendChild(newKeyboardRowElement)
+                    }
+                    let keyIndex = 0
+                    for (let keyName in rowObject) {
+                        // console.log('keyName:')
+                        // console.log(keyName)
+                        // console.log('keyHelpString:')
+                        // console.log(rowObject[keyName])
+                        if (!keyName || !keyName.trim()) {
+                            // null or empty
+                        }
+                        if (keyName == '^' || keyName == '*' || keyName == '$') {
+                            // '^' Start in Keyboard Row
+                            // OR '*' between in Keyboard Row
+                            // OR '$' End end Keyboard Row
+                            const nbOfEmptyKeys = rowObject[keyName]
+                            console.log('handleRow(): nbOfEmptyKeys:')
+                            console.log(nbOfEmptyKeys)
+                            for (let i = 0; i < nbOfEmptyKeys; i++) {
+                                handleKey(' ', keyIndex, { ' ': '' }, rowNumber, newKeyboardRowElement, this.keyListFromXML, this.specialShiftSymbols, this.document)
+                            }
+                        } else {
+                            handleKey(keyName, keyIndex, rowObject, rowNumber, newKeyboardRowElement, this.keyListFromXML, this.specialShiftSymbols, this.document)
+                        }
+                        keyIndex = keyIndex + 1
+                    }
+                    console.log('---')
+                }
+
+                function renderKeyBoard(keyListFromXML, document) {
+                    // console.log('4 instanceof document?: ' + (document instanceof Document))
+                    const keyboardLayout = readKeyBoardLayout()
+                    const insertAndArrowPadLayout = readInsertAndArrowPadLayout()
+                    const numericPadLayout = readNumericPadLayout()
+                    const specialShiftSymbols = readSpecialShiftSymbols()
+
+                    const newDivKeyboardElement = document.createElement("div")
+                    newDivKeyboardElement.setAttribute("class", "roundKeyboard")
+                    keyboardLayout.rows.forEach(handleRow, { keyListFromXML: keyListFromXML, document: document, specialShiftSymbols, newDivKeyboardElement: newDivKeyboardElement})
+                    const newKeyboardOuterDivElement = document.createElement("div")
+                    newKeyboardOuterDivElement.appendChild(newDivKeyboardElement)
+
+                    const newDivInsertAndArrowPadElement = document.createElement("div")
+                    newDivInsertAndArrowPadElement.setAttribute("class", "roundKeyboard")
+                    insertAndArrowPadLayout.rows.forEach(handleRow, { keyListFromXML: keyListFromXML, document: document, specialShiftSymbols, newDivInsertAndArrowPadElement: newDivInsertAndArrowPadElement})
+                    const newDivInsertAndArrowPadOuterDivElement = document.createElement("div")
+                    newDivInsertAndArrowPadOuterDivElement.appendChild(newDivInsertAndArrowPadElement)
+
+                    const newDivNumPadElement = document.createElement("div")
+                    newDivNumPadElement.setAttribute("class", "roundKeyboard")
+                    numericPadLayout.rows.forEach(handleRow, { keyListFromXML: keyListFromXML, document: document, specialShiftSymbols, newDivNumPadElement: newDivNumPadElement})
+                    const newNumericPadOuterDivElement = document.createElement("div")
+                    newNumericPadOuterDivElement.appendChild(newDivNumPadElement)
+                    
+                    const keyboardElement = document.getElementById("keyboard")
+                    keyboardElement.appendChild(newKeyboardOuterDivElement)
+                    keyboardElement.appendChild(newDivInsertAndArrowPadOuterDivElement)
+                    keyboardElement.appendChild(newNumericPadOuterDivElement)
+                }
+
+                function readKeyboardXMLFromFlightGear(document) {
+                    // read keyboard.xml file from FlightGear
+                    // console.log('2 instanceof document?: ' + (document instanceof Document))
+                    // const fileURL = 'file:///C:/Program%20Files/FlightGear%202020.3/data/keyboard.xml' // 'file:///C:/your/path/to/file.txt';
+                    const fileURL = 'http://127.0.0.1:8080/' + 'keyboard.xml' // 'file:///C:/your/path/to/file.txt';
+                    console.log('readKeyboardXMLFromFlightGear(): fileURL: ' + fileURL)
+                    fetch(fileURL)
+                        .then((res) => res.text())
+                        .then((text) => {
+                            // parse 'text' as XML
+                            // console.log(text)
+                            const parser = new DOMParser()
+                            const xmlDoc = parser.parseFromString(text, 'text/xml')
+                            const keys = xmlDoc.getElementsByTagName('key')
+                            console.log('readKeyboardXMLFromFlightGear(): keys.length:')
+                            console.log('' + keys.length + ' key entries in keyboard.xml') // 101 key entries in keyboard.xml
+                            const keyListFromXML = new Map()
+                            for (i = 0; i < keys.length; i++) {
+                                handleXMLKey(keys[i], keyListFromXML)
+                            }
+                            console.log('readKeyboardXMLFromFlightGear(): keyListFromXML:')
+                            console.log(keyListFromXML)
+                            // console.log('3 instanceof document?: ' + (document instanceof Document))
+                            renderKeyBoard(keyListFromXML, document)
+                        })
+                        .catch((e) => console.error(e))
+                }
+                // console.log('1 instanceof document?: ' + (document instanceof Document))
+                readKeyboardXMLFromFlightGear(document)
+        </script>
     </main>
 
     <footer id="footerOfDocument">
         <!-- footer of document -->
         <hr>
-        Footer text of document.
-        <div>validated with: <a href="https://validator.w3.org/#validate_by_input" target="_blank">W3C Markup Validation
-                Service</a></div>
+        <div id="footerText"></div>
+        <!-- <div>validated with: <a href="https://validator.w3.org/#validate_by_input" target="_blank">W3C Markup Validation
+                Service</a></div> -->
         <script>
+            const d = new Date()
+            const lds = d.toLocaleDateString()
+            document.getElementById("footerText").innerText = 'create date: ' + lds
             // in footer of document add autor from header meta
-            const author = document.getElementsByName("author")[0].getAttribute("content");
-            // console.log("author:");
-            // console.log(author);
-            const newTextNode = document.createTextNode("author: " + author);
-            const newDivElement = document.createElement("div");
-            newDivElement.appendChild(newTextNode);
-            const footerOfDocumentElement = document.getElementById("footerOfDocument");
-            footerOfDocumentElement.appendChild(newDivElement);
+            const author = document.getElementsByName("author")[0].getAttribute("content")
+            // console.log("author:")
+            // console.log(author)
+            const newTextNode = document.createTextNode("author: " + author)
+            const newDivElement = document.createElement("div")
+            newDivElement.appendChild(newTextNode)
+            const footerOfDocumentElement = document.getElementById("footerOfDocument")
+            footerOfDocumentElement.appendChild(newDivElement)
         </script>
 
     </footer>
