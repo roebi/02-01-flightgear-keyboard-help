@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <!-- viewport to make your website look good on all devices -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- meta charset="utf-8" -->
+    <meta name="lang" content="en-US">
+    <!-- for search engines -->
+    <meta name="keywords" content="HTML5 Template Page">
+    <meta name="description" content="HTML5 Template with almost empty CSS and JavaScript Nodes">
+    <meta name="author" content="Robert Halter">
+    <!-- link rel="stylesheet" href="styles/style.css" -->
+    <style>
+        /* move to styles/styles.css */
+        html * {
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 1.625;
+            /* default line-height is about 110% to 120% */
+            /* 26px = 1.625 * font-size 16px */
+            /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_colors/Applying_color */
+            /* https://www.w3schools.com/colors/colors_names.asp */
+            color: #000033;
+            /* https://color-hex.org/color/000033 contains mainly BLUE color. */
+            /* https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook */
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        aside {
+            float: right;
+            background-color: lightblue;
+        }
+
+        div.roundKeyboard {
+            border: 2px solid black;
+            border-radius: 12px;
+            padding: 3px;
+        }
+
+        div.roundKeyboardRow {
+            display: flex;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 2px;
+        }
+
+        div.roundKeyboardKey {
+            margin: 1px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 1px;
+            width: 55px;
+        }
+
+        div.keyName {
+            margin: 1px;
+            font-size: 22px;
+            text-align: left;
+        }
+
+        div.keyHelp {
+            margin: 1px;
+            font-size: 14px;
+            text-align: left;
+        }
+    </style>
+    <!-- <script src="scripts/main.js"></script> -->
+    <script>
+        // move to scripts/main.js
+        // empty inline script
+        // JavaScript Standard Style
+        // https://standardjs.com/
+        // Rules
+        // https://standardjs.com/rules.html
+        console.log('inline script is run')
+    </script>
+    <title>Keyboard - Help</title>
+</head>
+
+<body>
+
+    <!--main structure use of common HTML5 elements -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML -->
+    <!-- https://www.w3schools.com/html/html_layout.asp -->
+    <!-- https://www.w3schools.com/html/html5_semantic_elements.asp -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Content_categories -->
+    <!-- Beginner Tip for layout your page: -->
+    <!-- use -->
+    <!-- do NOT using tables for layout -->
+    <!-- HTML tables should be used for tabular data — this is what they are designed for. -->
+    <!-- see -->
+    <!-- https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics#when_should_you_not_use_html_tables -->
+
+    <header>
+        <!-- header of document -->
+        Header of document text.
+        <hr>
+    </header>
+
+    <nav>
+        <!-- Navigation often links -->
+        Navigation |
+        <a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a>
+        <!--  CSS, HTML, JavaScript, and Web APIs. --> |
+        <a href="https://www.w3schools.com/" target="_blank">w3schools Learn to Code</a>
+        <hr>
+    </nav>
+
+    <main id="mainOfDocument">
+        <!-- main specifies the main content of this document -->
+        <!-- only ONE main element in the document. -->
+        <section>
+            <header>
+                <!-- header of section -->
+                Header text of 'section with details / summary pairs'.
+                <hr>
+            </header>
+            <h2>Section with details / summary pairs</h2>
+            <p>Details can be opend and closed.</p>
+            <p>Details can have nested details.</p>
+            <details open>
+                <summary>Summary of parent Detail</summary>
+                Parent detail text.
+                <details open>
+                    <summary>Summary of child Detail</summary>
+                    Child detail text.
+                </details>
+            </details>
+            <footer>
+                <!-- footer of section -->
+                <hr>
+                Footer text of 'section with details / summary pairs'.
+            </footer>
+        </section>
+
+        <script>
+            // in main of document read keyboard json and render keyboard
+            console.log('after main, inline script is run')
+
+            // from https://flightgear.sourceforge.net/manual/2020.3/en/getstart-ench5.html#keyboard-controls
+            const keyboardJSON = '{ "rows": [' +
+                  '{ "^":11, "~":"select all Engines", "BS":"autopilot" },' +
+                  '{ "^":4, "C-t":"AGL lock", "":"", "C-u":"+1kft", "*":2, "P":"Pause", "$":2 },' +
+                  '{ "^":0, "a/A":"Sim speed", "S":"Starter", "*":8, "AG-{":"Decr Engine", "AG-}":"Incr Engine" },' +
+                  '{ "^":2, "C":"cockpit", "*":1, "B":"parking Brakes", "$":5 }' +
+                ']}'
+            console.log('---')
+            console.log('keyboardJSON:')
+            console.log(keyboardJSON)
+            keyBoard = JSON.parse(keyboardJSON)
+            console.log('keyBoard:')
+            console.log(keyBoard)
+            console.log('---')
+
+            function handleKey(keyName, keyIndex, rowObject, rowNumber, htmlKeyboardRowElement) {
+                console.log('---')
+                let nbOfkeysInRow = Object.keys(rowObject).length
+                console.log('handle key ' + (keyIndex + 1) + ' of row ' + rowNumber + ' of total keys ' + nbOfkeysInRow)
+                // for (let [keyName, helpString] of Object.entries(keyObj)) {
+                console.log('handleKey: keyName:')
+                console.log(keyName.toString())
+                console.log('handleKey: keyHelpString:')
+                let keyHelp = rowObject[keyName]
+                console.log(keyHelp)
+
+                let newKeyboardKeyNameElement = document.createElement("div")
+                newKeyboardKeyNameElement.setAttribute("class", "keyName")
+                let keyNameTextElement = document.createTextNode(keyName.toString())
+                newKeyboardKeyNameElement.appendChild(keyNameTextElement)
+
+                let newKeyboardKeyHelpElement = document.createElement("div")
+                newKeyboardKeyHelpElement.setAttribute("class", "keyHelp")
+                let keyHelpTextElement = document.createTextNode(keyHelp)
+                newKeyboardKeyHelpElement.appendChild(keyHelpTextElement)
+
+                let newKeyboardKeyElement = document.createElement("div")
+                newKeyboardKeyElement.setAttribute("class", "roundKeyboardKey")
+                newKeyboardKeyElement.appendChild(newKeyboardKeyNameElement)
+                newKeyboardKeyElement.appendChild(newKeyboardKeyHelpElement)
+                
+                htmlKeyboardRowElement.appendChild(newKeyboardKeyElement)
+                console.log('---')
+            }
+
+            function handleRow(rowObject, index, array) {
+                console.log('---')
+                let rowNumber = index + 1
+                let nbOfKeysInRow = Object.keys(rowObject).length
+                console.log('handle row ' + rowNumber + ', with ' + nbOfKeysInRow + ' keys, of total rows ' + array.length)
+                console.log('handleRow: row Object:')
+                console.log(rowObject)
+                const newKeyboardRowElement = document.createElement("div")
+                newKeyboardRowElement.setAttribute("class", "roundKeyboardRow")
+                newDivKeyboardElement.appendChild(newKeyboardRowElement)
+                let keyIndex = 0
+                for (let keyName in rowObject) {
+                    // console.log('keyName:')
+                    // console.log(keyName)
+                    // console.log('keyHelpString:')
+                    // console.log(rowObject[keyName])
+                    if (!keyName || !keyName.trim()) {
+                        // null or empty
+                    }
+                    if (keyName == '^' || keyName == '*' || keyName == '$') {
+                        // '^' Start in Keyboard Row
+                        // OR '*' between in Keyboard Row
+                        // OR '$' End end Keyboard Row
+                        let nbOfEmptyKeys = rowObject[keyName]
+                        console.log('nbOfEmptyKeys:')
+                        console.log(nbOfEmptyKeys)
+                        for (let i = 0; i < nbOfEmptyKeys; i++) {
+                            handleKey(' ', keyIndex, { ' ': ''}, rowNumber, newKeyboardRowElement)
+                        }
+                    } else {
+                        handleKey(keyName, keyIndex, rowObject, rowNumber, newKeyboardRowElement)
+                    }
+                    keyIndex = keyIndex + 1
+                }
+                console.log('---')
+            }
+
+            const newDivKeyboardElement = document.createElement("div")
+            newDivKeyboardElement.setAttribute("class", "roundKeyboard")
+            keyBoard.rows.forEach(handleRow)
+
+            const newMainOuterDivElement = document.createElement("div")
+            newMainOuterDivElement.appendChild(newDivKeyboardElement)
+            const mainOfDocumentElement = document.getElementById("mainOfDocument")
+            mainOfDocumentElement.appendChild(newMainOuterDivElement)
+        </script>
+    </main>
+
+    <footer id="footerOfDocument">
+        <!-- footer of document -->
+        <hr>
+        Footer text of document.
+        <div>validated with: <a href="https://validator.w3.org/#validate_by_input" target="_blank">W3C Markup Validation
+                Service</a></div>
+        <script>
+            // in footer of document add autor from header meta
+            const author = document.getElementsByName("author")[0].getAttribute("content")
+            // console.log("author:")
+            // console.log(author)
+            const newTextNode = document.createTextNode("author: " + author)
+            const newDivElement = document.createElement("div")
+            newDivElement.appendChild(newTextNode)
+            const footerOfDocumentElement = document.getElementById("footerOfDocument")
+            footerOfDocumentElement.appendChild(newDivElement)
+        </script>
+
+    </footer>
+
+</body>
+
+</html>
+

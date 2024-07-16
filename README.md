@@ -1,25 +1,13 @@
-# 01-01 vanilla HTML 5 starter page
+# 02-01 flightgear keyboard help
 
 # What is this about?
 
-This is about my vanilla HTML 5 starter page.
+This is a flightgear keyboard help as a vanilla HTML 5 page.
 
-Have you ever heard of this HTML 5 tags ?
+This flightgear keyboard help is generated from the flightgear file keyboard.xml
 
-```html
-<nav>
-  <main>
-    <section>
-      <header>
-        <details>
-          <summary>
-            <aside> , <hgroup> and
-      <footer>
-```
-# If not,
+It is a help to use of flightgear using the keyboard.
 
-then take a closer look at this template and use it for your ideas and projects!
+For more Information on flightgear see
 
-go to file location [index.html](./index.html)
-
-show [inline raw content of index.html](https://raw.githubusercontent.com/roebi/01-01-vanilla-HTML5-starter-page/master/index.html)
+https://www.flightgear.org/
